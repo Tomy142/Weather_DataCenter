@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Control Climático DataCenter</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Control Climático DataCenter</h1>
+        
+        <div class="status-container">
+            <div class="status-card">
+                <h2>Temperatura</h2>
+                <div class="value" id="current-temp">--°C</div>
+                <div class="controls">
+                    <button id="temp-up">+1°</button>
+                    <button id="temp-down">-1°</button>
+                </div>
+                <div class="stats">
+                    <div>Mín: <span id="min-temp">--°C</span></div>
+                    <div>Máx: <span id="max-temp">--°C</span></div>
+                    <div>Prom: <span id="avg-temp">--°C</span></div>
+                </div>
+            </div>
+            
+            <div class="status-card">
+                <h2>Humedad</h2>
+                <div class="value" id="current-humidity">--%</div>
+                <div class="controls">
+                    <button id="humidity-up">+1%</button>
+                    <button id="humidity-down">-1%</button>
+                </div>
+                <div class="stats">
+                    <div>Mín: <span id="min-humidity">--%</span></div>
+                    <div>Máx: <span id="max-humidity">--%</span></div>
+                    <div>Prom: <span id="avg-humidity">--%</span></div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="history-container">
+            <h2>Histórico</h2>
+            <div class="chart-container">
+                <canvas id="history-chart" height="300"></canvas>
+            </div>
+            <div class="history-controls">
+                <select id="time-range">
+                    <option value="1">Última hora</option>
+                    <option value="24" selected>Últimas 24 horas</option>
+                    <option value="168">Última semana</option>
+                </select>
+                <button id="refresh-btn">Actualizar</button>
+            </div>
+        </div>
+
+        <div class="alerts-container">
+            <h2>Configuración de Alertas</h2>
+            <div class="alert-settings">
+                <div>
+                    <label for="alert-email">Email para alertas:</label>
+                    <input type="email" id="alert-email" value="admin@datacenter.com">
+                </div>
+                <div>
+                    <label for="min-temp-alert">Temp. mínima (°C):</label>
+                    <input type="number" id="min-temp-alert" value="18">
+                </div>
+                <div>
+                    <label for="max-temp-alert">Temp. máxima (°C):</label>
+                    <input type="number" id="max-temp-alert" value="25">
+                </div>
+                <div>
+                    <label for="min-humidity-alert">Humedad mínima (%):</label>
+                    <input type="number" id="min-humidity-alert" value="40">
+                </div>
+                <div>
+                    <label for="max-humidity-alert">Humedad máxima (%):</label>
+                    <input type="number" id="max-humidity-alert" value="60">
+                </div>
+                <button id="save-alerts">Guardar Configuración</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bibliotecas necesarias para Chart.js con soporte de tiempo -->
+    <script src="https://cdn.jsdelivr.net/npm/luxon@3.0.1/build/global/luxon.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-luxon@1.2.0/dist/chartjs-adapter-luxon.min.js"></script>
+    
+    <script type="module" src="app.js"></script>
+</body>
+</html>
